@@ -151,7 +151,7 @@ class supplier{
         do
         {   system("cls");
             cout << "|| Welcome To Supplier Area ||\n"
-                 << "[1]Login\n[2]Signup \n([0] to exit)\n > ";
+                 << "\n[1]Login\n\n[2]Signup\n\n([0] to exit)\n > ";
             cin >> x;
             if (x == '1')
             {
@@ -195,28 +195,60 @@ class customer{
     char product_color[100];
     char product_symbol[100];
     public:
-        void customer_product_input()
+
+        void marketplace_menu()
         {
-            cout << "|| Welcome To Product Selling || \nEnter product name\n";
-            cin >> product_name;
-            cout  << "Enter Product Cost\n";
-            cin >> product_cost;
-            cout << "Enter Product Color\n";
-            cin >> product_color;
-            cout << "Enter Product Color Symbol in [color] form\n";
-            cin >> product_symbol;
-            cin.get();
-            cin.ignore();
+          cls();
+          char choice;
+          do{
+            cout << "|| Welcome To Marketplace || \n[1] Buy\n[2] Cart\n([0] Exit)";
+            cin>>choice;
+            if(choice == '1')
+            {
+              buy();
+            }
+            else if(choice == '2')
+            {
+              cart();
+            }
+            else
+            {
+              cout<<"Enter valid input";
+            }
+          }while(choice != '0');
         }
-        void product_file_input()
+
+        void buy()
         {
-            fstream product_file;
-            customer s;
-            s.customer_product_input();
-            product_file.open("products.txt", ios::out | ios::app | ios::binary);
-            product_file.write((char*)&s, sizeof(s));
-            product_file.close();
+          cls();
+          view_product();
+          cout<<"\n\nChoose the number of the corresponding product you want to choose:\n";
+
+          // checkout();
+
+
         }
+
+        void cart()
+        {
+
+        }
+
+        // void checkout();
+        // {
+        //   //If no of items in cart >= 1, then checkout
+        // }
+
+        // void product_file_input()
+        // {
+        //     fstream product_file;
+        //     customer s;
+        //     s.customer_product_input();
+        //     product_file.open("products.txt", ios::out | ios::app | ios::binary);
+        //     product_file.write((char*)&s, sizeof(s));
+        //     product_file.close();
+        // }
+
         void view_product(){
             ifstream product_file;
             customer s;
@@ -294,7 +326,7 @@ class customer{
             }
             supply_file.close();
             if(present == 1){
-                product_file_input();
+                marketplace_menu();
             }
             else{
                 cout << "Record Not Found! Try signing up";
@@ -305,12 +337,12 @@ class customer{
 
     void customer_file_input()
     {
-        fstream supply_file;
+        fstream customer_file;
         customer s;
         s.customer_signup();
-        supply_file.open("customer.txt", ios::out|ios::app|ios::binary);
-        supply_file.write((char*)&s, sizeof(s));
-        supply_file.close();
+        customer_file.open("customer.txt", ios::out|ios::app|ios::binary);
+        customer_file.write((char*)&s, sizeof(s));
+        customer_file.close();
     }
 
     void customer_menu()
@@ -318,13 +350,14 @@ class customer{
         char x;
         do
         {   system("cls");
-            cout << "|| Welcome To Marketplace||\n"
-                 << "[1]Login\n[2]Signup \n([0] to exit)\n > ";
+            cout << "|| Welcome To Customer Menu||\n"
+                 << "\n[1]Login\n\n[2]Signup \n\n([0] to exit)\n > ";
             cin >> x;
             if (x == '1')
             {
                 cls();
                 customer_login();
+
             }
             else if (x == '2')
             {
@@ -334,7 +367,7 @@ class customer{
             else if (x == 'x')
             {
                 cls();
-                view();
+                view_product();
             }
 
             else if (x == '0')
@@ -358,7 +391,7 @@ void menu(){
     do{
         system("cls");
         cout << "|| Welcome to Estore where you can buy or supply Electronic Products! ||\n"
-             << "[1] Supplier \n[2] Customer \n\n([0] to Exit)\n> ";
+             << "\n[1] Supplier \n\n[2] Customer \n\n([0] to Exit)\n> ";
         cin >> a;
         if (a == '1')
         {
@@ -379,7 +412,7 @@ void menu(){
     }
 
     else{
-        cout << "Tri dont cri";
+        cout << "Invalid Input, Try Again.";
     }
 
     }while(a!='0');
