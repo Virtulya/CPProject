@@ -223,14 +223,16 @@ class customer{
           cls();
           view_product();
           cout<<"\n\nChoose the number of the corresponding product you want to choose:\n";
-
+          cin>>product_no;
           // checkout();
 
 
         }
 
         void cart()
+
         {
+
 
         }
 
