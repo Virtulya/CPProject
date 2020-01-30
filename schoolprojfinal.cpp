@@ -129,11 +129,11 @@ void supplier::view_product()
     //Open File
     product_file.open("products.txt", ios::in | ios::binary);
     int i = 1;
-    cout << "| Sno | Product No.|   Product    |   Cost   |   Color   |" << endl;
+    cout << "| Sno |  Product No. |       Product      |  Cost  |    Color    |" << endl;
     do
     {
       product_file.read((char *)&s, sizeof(s));
-      cout << "   " << i << "     " << s.product_no << "       " << s.product_name << "       " << s.product_cost << "$        " << s.product_color << "\n";
+      cout << "\t\t" << i << "\t\t" << s.product_no << "\t\t\t" << s.product_name << "\t\t\t" << s.product_cost << "\t\t" << s.product_color << "\n";
       hr(54);
       i++;
     } while (product_file.read((char*)&s, sizeof(s)));
